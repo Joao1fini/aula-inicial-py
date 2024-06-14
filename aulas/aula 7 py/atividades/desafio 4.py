@@ -6,21 +6,47 @@
 # no final do jogo.
 import random
 import time
-jogador=input("escola par ou impar: ")
-pc=random.randint(1,10)
-numero=int(input("escolha um numero d 1 a 10: "))
+vitorias=0
+while True:
+    jogador=input("escola par ou impar: ")
+    if jogador=="par" or jogador=="impar":
+        numero=int(input("escolha um numero d 1 a 10: "))
+        if numero<=10 and numero>=0:
+            pc=random.randint(1,10)
+            par=(numero+pc)%2==0
+            time.sleep(1)
+            print(f"O computador escolheu {pc}")
+            time.sleep(1)
+            if jogador=="impar":
+                if (numero+pc)!=par:
+                    print("Você ganhou")
+                    vitorias+=1
+                else:
+                    print("você perdeu")
+                    break
+            elif jogador=="par":
+                if par==True:
+                    print("Você ganhou")
+                    vitorias+=1
+                else:
+                    print("você perdeu")
+                    break
+            else:
+                print("error")
+        else:
+            print("o numero tem que ser de 1 a 10. ")
+            continue
 time.sleep(1)
-print(f"O computador escolheu {pc}")
+print("calculando.")
 time.sleep(1)
-if jogador=="impar":
-    if (numero+pc)%3==0:
-        print("Você ganhou")
+print("calculando..") 
+time.sleep(1)
+print("calculando...")  
+if vitorias>0:
+    if vitorias>1:
+        print(f"você venceu um total de {vitorias} vitorias consecutivas")
     else:
-        print("você perdeu")
-elif jogador=="par":
-    if (numero+pc)%2==0:
-        print("Você ganhou")
-    else:
-        print("você perdeu")
-else:
-    print("error")
+        print(f"você venceu {vitorias} partida")
+elif vitorias==0:
+    print(f"você nao venceu nenhuma partida")
+input()
